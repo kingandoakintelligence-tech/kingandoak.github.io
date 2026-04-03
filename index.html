@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King & Oak Intelligence - Veterinary AI Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5f3f 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5f3f 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a472a;
+            padding: 15px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+        }
+        
+        /* Services Section */
+        .services {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        
+        .services h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1a472a;
+            font-weight: 700;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card.featured {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, #fafaf8 0%, #f5f1e8 100%);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            color: #1a472a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .price {
+            font-size: 32px;
+            color: #d4af37;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 30px 0;
+            list-style: none;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .features li:before {
+            content: "✓ ";
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .features li:last-child {
+            border-bottom: none;
+        }
+        
+        .select-button {
+            background: #1a472a;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .select-button:hover {
+            background: #2d5f3f;
+        }
+        
+        .featured .select-button {
+            background: #d4af37;
+            color: #1a472a;
+        }
+        
+        .featured .select-button:hover {
+            background: #c9a227;
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            background: #f9f9f9;
+            padding: 80px 20px;
+            margin-top: 60px;
+        }
+        
+        .why-us-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .why-us h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a472a;
+            font-weight: 700;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .benefit h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .benefit p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5f3f 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-section .cta-button {
+            padding: 18px 50px;
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a472a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .services h2,
+            .why-us h2,
+            .cta-section h2 {
+                font-size: 28px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Simplified tree logo in SVG -->
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#d4af37" stroke-width="2"/>
+                    <path d="M100 30 Q120 50 115 70 Q135 80 130 100 Q140 110 135 130" stroke="#d4af37" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <path d="M100 30 Q80 50 85 70 Q65 80 70 100 Q60 110 65 130" stroke="#d4af37" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <circle cx="100" cy="160" r="8" fill="#d4af37"/>
+                    <circle cx="85" cy="155" r="6" fill="#d4af37"/>
+                    <circle cx="115" cy="155" r="6" fill="#d4af37"/>
+                    <circle cx="100" cy="170" r="6" fill="#d4af37"/>
+                </svg>
+                KING & OAK
+            </div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#why">Why Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Custom AI for Veterinary Excellence</h1>
+            <p>Custom OpenClaw instances designed specifically for your practice. Streamline workflows, integrate systems, and focus on what matters — exceptional patient care.</p>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Start Your Discovery</button>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Service Tiers</h2>
+        <div class="pricing-grid">
+            <!-- Starter Tier -->
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$7,500–$10,500</div>
+                <div class="price-period">Setup + First Year</div>
+                <ul class="features">
+                    <li>Discovery consultation (4 hrs)</li>
+                    <li>Custom OpenClaw instance design</li>
+                    <li>1 major integration (PIMS, inventory, etc.)</li>
+                    <li>VPS + container setup</li>
+                    <li>2 training sessions</li>
+                    <li>Quarterly optimization</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                    <strong>Monthly:</strong> $400–600 (ongoing support)
+                </p>
+                <button class="select-button">Learn More</button>
+            </div>
+
+            <!-- Growth Tier (Featured) -->
+            <div class="pricing-card featured">
+                <h3>Growth</h3>
+                <div class="price">$16,000–$22,000</div>
+                <div class="price-period">Setup + First Year</div>
+                <ul class="features">
+                    <li>Discovery consultation (8 hrs)</li>
+                    <li>2–3 integrated systems</li>
+                    <li>Custom reporting dashboards</li>
+                    <li>Full staff training program</li>
+                    <li>Quarterly reviews + optimization</li>
+                    <li>Priority support</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                    <strong>Monthly:</strong> $800–1,200 (8 hrs/month support)
+                </p>
+                <button class="select-button">Learn More</button>
+            </div>
+
+            <!-- Enterprise Tier -->
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">$31,000–$58,000+</div>
+                <div class="price-period">Setup + First Year</div>
+                <ul class="features">
+                    <li>Full operational stack integration</li>
+                    <li>4–5+ custom integrations</li>
+                    <li>Multi-location support</li>
+                    <li>Dedicated support team</li>
+                    <li>Strategic planning + roadmap</li>
+                    <li>Staff training + certification</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                    <strong>Monthly:</strong> $1,500–2,500 (15–20 hrs/month)
+                </p>
+                <button class="select-button">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us" id="why">
+        <div class="why-us-content">
+            <h2>Why King & Oak Intelligence?</h2>
+            <div class="benefits">
+                <div class="benefit">
+                    <h3>Built on Proven Workflows</h3>
+                    <p>Our approach is validated with Live Oak Veterinary Specialists — a real, operating practice using the same systems we'll build for you.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Transparency & No Lock-In</h3>
+                    <p>You own your infrastructure. No proprietary black boxes. We'll teach you to maintain and evolve your systems independently.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Efficiency Without Sacrificing Care</h3>
+                    <p>Technology should serve your team and patients — not replace human judgment. We optimize workflows while preserving the human touch.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Week-by-Week Delivery</h3>
+                    <p>From discovery to deployment, you see incremental results. VetClaw by week 1, email triage by week 2, and custom features following.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Custom Training</h3>
+                    <p>Your team gets hands-on training to understand and maintain the system long-term. You're never dependent on us.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Ongoing Partnership</h3>
+                    <p>This isn't a one-time project. We support you quarterly, advise on updates, and help evolve as your practice grows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h2>Ready to Transform Your Practice?</h2>
+            <p>Start with a 20-minute discovery call to understand your pain points and explore solutions.</p>
+            
+            <form id="discoveryForm" style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; margin-top: 30px;">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" name="practice_name" placeholder="Practice Name" required style="width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="text" name="contact_name" placeholder="Your Name" required style="width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="tel" name="phone" placeholder="Phone Number" style="width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 14px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <textarea name="pain_points" placeholder="What's your biggest workflow challenge?" rows="4" style="width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 14px; font-family: inherit;"></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%;">Schedule Discovery Call</button>
+                <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">We'll respond within 24 hours with available times.</p>
+            </form>
+        </div>
+    </section>
+    
+    <script>
+        document.getElementById('discoveryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                practice_name: formData.get('practice_name'),
+                contact_name: formData.get('contact_name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                pain_points: formData.get('pain_points'),
+                submitted_at: new Date().toISOString()
+            };
+            
+            // Store in sessionStorage for HubSpot integration later
+            sessionStorage.setItem('kingoak_lead', JSON.stringify(data));
+            
+            // Show confirmation
+            alert('Thank you! We\'ll be in touch shortly at ' + data.email);
+            this.reset();
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2026 King & Oak Intelligence. Veterinary AI Consulting. All rights reserved.</p>
+        <p>Custom OpenClaw Instances • Workflow Integration • Training & Support</p>
+    </footer>
+</body>
+</html>
